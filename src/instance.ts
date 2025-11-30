@@ -178,6 +178,10 @@ export class InfinittonWrapper implements SurfaceInstance {
 			await this.#writePage1(keyIndex, firstPagePixels)
 			await this.#writePage2(keyIndex, secondPagePixels)
 
+			// HACK: Give the device a chance to flush its buffer before the next write
+			// This is probably pretty brittle, but without protocol docs, it is unclear if we can do any better
+			await setTimeout(5)
+
 			await this.#infinitton.sendFeatureReport(
 				Buffer.from([
 					0,
@@ -216,10 +220,6 @@ export class InfinittonWrapper implements SurfaceInstance {
 					0x00,
 				]),
 			)
-
-			// HACK: Give the device a chance to flush its buffer before the next write
-			// This is probably pretty brittle, but without protocol docs, it is unclear if we can do any better
-			await setTimeout(20)
 		})
 	}
 
