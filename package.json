@@ -24,7 +24,8 @@
 	},
 	"dependencies": {
 		"@companion-surface/base": "~0.6.1",
-		"infinitton-idisplay": "^1.2.0"
+		"node-hid": "^3.2.0",
+		"p-queue": "^9.0.1"
 	},
 	"devDependencies": {
 		"@companion-module/tools": "2.4.2-nightly-main-20251021-232112-36bfae9",

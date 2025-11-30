@@ -1,6 +1,8 @@
-export const COLUMNS = 5
-export const ROWS = 3
+export const COLUMNS = 3
+export const ROWS = 5
 export const KEY_COUNT = ROWS * COLUMNS
+
+export const ICON_SIZE = 72
 
 // export function getControlIdFromIndex(index: number): string {
 // 	const column = index % COLUMNS
@@ -13,20 +15,11 @@ export function getControlIdFromXy(column: number, row: number): string {
 	return `${row * COLUMNS + column}`
 }
 
+const MAP_BUTTON_LIST = [0, 5, 10, 1, 6, 11, 2, 7, 12, 3, 8, 13, 4, 9, 14]
 export function mapButton(input: number): number {
-	const map = '4 3 2 1 0 9 8 7 6 5 14 13 12 11 10'.split(/ /)
 	if (input < 0) {
 		return -1
 	}
 
-	return parseInt(map[input])
-}
-
-export function reverseButton(input: number): number | undefined {
-	const map = '4 3 2 1 0 9 8 7 6 5 14 13 12 11 10'.split(/ /)
-	for (let pos = 0; pos < map.length; pos++) {
-		if (Number(map[input]) == pos) return pos
-	}
-
-	return
+	return MAP_BUTTON_LIST[input]
 }

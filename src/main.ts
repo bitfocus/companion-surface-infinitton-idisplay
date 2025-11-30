@@ -8,8 +8,8 @@ import {
 } from '@companion-surface/base'
 import { InfinittonWrapper } from './instance.js'
 import { createSurfaceSchema } from './surface-schema.js'
-import Infinitton from 'infinitton-idisplay'
 import { getControlIdFromXy } from './util.js'
+import { HIDAsync } from 'node-hid'
 
 const logger = createModuleLogger('Plugin')
 
@@ -38,7 +38,9 @@ const InfinittonPlugin: SurfacePlugin<HIDDevice> = {
 		pluginInfo: HIDDevice,
 		context: SurfaceContext,
 	): Promise<OpenSurfaceResult> => {
-		const device = new Infinitton(pluginInfo.path)
+		const device = await HIDAsync.open(pluginInfo.path).catch(() => {
+			throw new Error('Device not found')
+		})
 		logger.debug(`Opening ${pluginInfo.manufacturer} ${pluginInfo.product} (${surfaceId})`)
 
 		return {

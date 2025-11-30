@@ -1,14 +1,14 @@
 import type { SurfaceSchemaLayoutDefinition } from '@companion-surface/base'
-import { COLUMNS, getControlIdFromXy, ROWS } from './util.js'
+import { COLUMNS, getControlIdFromXy, ICON_SIZE, ROWS } from './util.js'
 
 export function createSurfaceSchema(): SurfaceSchemaLayoutDefinition {
 	const surfaceLayout: SurfaceSchemaLayoutDefinition = {
 		stylePresets: {
 			default: {
 				bitmap: {
-					w: 72,
-					h: 72,
-					format: 'rgb',
+					w: ICON_SIZE,
+					h: ICON_SIZE,
+					format: 'rgb', // Future: this could be rgb?
 				},
 			},
 		},
